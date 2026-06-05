@@ -871,6 +871,24 @@ h1, h2, h3, h4, h5, h6 {
   to { transform: rotate(360deg); }
 }
 
+.order-card-responsive {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+@media (max-width: 640px) {
+  .order-card-responsive {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
 /* Mobile Responsiveness */
 @media (max-width: 1024px) {
   .dashboard-layout {

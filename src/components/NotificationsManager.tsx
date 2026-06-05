@@ -78,7 +78,7 @@ export default function NotificationsManager({ session }: { session: any }) {
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             {notifications.map(notif => (
-              <div key={notif.id} style={{ display: 'flex', gap: '1rem', padding: '1.5rem', backgroundColor: notif.type === 'danger' ? 'rgba(239, 68, 68, 0.05)' : 'rgba(245, 158, 11, 0.05)', border: `1px solid ${notif.type === 'danger' ? 'rgba(239, 68, 68, 0.2)' : 'rgba(245, 158, 11, 0.2)'}`, borderRadius: '8px' }}>
+              <div key={notif.id} style={{ display: 'flex', gap: '1rem', padding: '1.5rem', backgroundColor: notif.type === 'danger' ? 'rgba(239, 68, 68, 0.05)' : 'rgba(245, 158, 11, 0.05)', border: `1px solid ${notif.type === 'danger' ? 'rgba(239, 68, 68, 0.2)' : 'rgba(245, 158, 11, 0.2)'}`, borderRadius: '8px', flexWrap: 'wrap' }}>
                 <div style={{ color: notif.type === 'danger' ? '#fca5a5' : '#fcd34d', marginTop: '0.2rem' }}>
                   {notif.type === 'danger' ? <AlertCircle size={24} /> : <Clock size={24} />}
                 </div>

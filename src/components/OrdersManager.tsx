@@ -103,7 +103,7 @@ export default function OrdersManager({ session }: { session: any }) {
   const pastOrders = orders.filter(o => o.status !== 'pending');
 
   return (
-    <div className="fade-in" style={{ padding: '2rem' }}>
+    <div className="fade-in">
       <header className="content-header">
         <div>
           <h1 className="page-title">Live Orders</h1>
@@ -113,33 +113,33 @@ export default function OrdersManager({ session }: { session: any }) {
 
       <div style={{ display: 'grid', gap: '2rem', gridTemplateColumns: '1fr' }}>
         <section>
-          <h2 style={{ marginBottom: '1rem', color: '#5c3d21' }}>Pending Orders ({pendingOrders.length})</h2>
+          <h2 style={{ marginBottom: '1rem', color: 'var(--text-primary)' }}>Pending Orders ({pendingOrders.length})</h2>
           {pendingOrders.length === 0 ? (
             <div className="alert success">No pending orders at the moment.</div>
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               {pendingOrders.map(order => (
-                <div key={order.id} style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: '8px', padding: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', boxShadow: '0 4px 6px rgba(0,0,0,0.05)' }}>
+                <div key={order.id} className="order-card-responsive">
                   <div>
                     <h3 style={{ margin: '0 0 0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                       <Clock size={18} color="#eab308"/> Order #{order.id.slice(0, 8)}
                     </h3>
-                    <p style={{ margin: 0, fontSize: '0.9rem', color: '#64748b' }}>
+                    <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
                       {new Date(order.created_at).toLocaleTimeString()}
                     </p>
-                    <ul style={{ margin: '0.5rem 0 0 0', paddingLeft: '1.2rem', color: '#334155' }}>
+                    <ul style={{ margin: '0.5rem 0 0 0', paddingLeft: '1.2rem', color: 'var(--text-primary)' }}>
                       {order.items?.map((item: any) => (
                         <li key={item.id}>1x {item.name} (${item.price.toFixed(2)})</li>
                       ))}
                     </ul>
-                    <p style={{ margin: '0.5rem 0 0 0', fontWeight: 'bold' }}>Total: ${order.total_amount?.toFixed(2)}</p>
+                    <p style={{ margin: '0.5rem 0 0 0', fontWeight: 'bold', color: 'var(--text-primary)' }}>Total: ${order.total_amount?.toFixed(2)}</p>
                   </div>
                   
-                  <div style={{ display: 'flex', gap: '1rem' }}>
-                    <button onClick={() => updateOrderStatus(order, 'rejected')} style={{ background: '#ef4444', color: '#fff', border: 'none', padding: '0.6rem 1.2rem', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 'bold' }}>
+                  <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem', flexWrap: 'wrap' }}>
+                    <button onClick={() => updateOrderStatus(order, 'rejected')} style={{ flex: 1, background: '#ef4444', color: '#fff', border: 'none', padding: '0.8rem 1.2rem', borderRadius: '8px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', fontWeight: 'bold' }}>
                       <XCircle size={16} /> Reject
                     </button>
-                    <button onClick={() => updateOrderStatus(order, 'accepted')} style={{ background: '#22c55e', color: '#fff', border: 'none', padding: '0.6rem 1.2rem', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 'bold' }}>
+                    <button onClick={() => updateOrderStatus(order, 'accepted')} style={{ flex: 1, background: '#22c55e', color: '#fff', border: 'none', padding: '0.8rem 1.2rem', borderRadius: '8px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', fontWeight: 'bold' }}>
                       <CheckCircle size={16} /> Accept
                     </button>
                   </div>
@@ -150,17 +150,17 @@ export default function OrdersManager({ session }: { session: any }) {
         </section>
 
         <section style={{ marginTop: '2rem' }}>
-          <h2 style={{ marginBottom: '1rem', color: '#5c3d21' }}>Past Orders</h2>
+          <h2 style={{ marginBottom: '1rem', color: 'var(--text-primary)' }}>Past Orders</h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
             {pastOrders.map(order => (
-              <div key={order.id} style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '6px', padding: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div key={order.id} style={{ background: 'var(--bg-secondary)', border: '1px solid var(--border-color)', borderRadius: '8px', padding: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
                 <div>
-                  <span style={{ fontWeight: 'bold' }}>Order #{order.id.slice(0, 8)}</span>
-                  <span style={{ marginLeft: '1rem', color: '#64748b' }}>${order.total_amount?.toFixed(2)}</span>
+                  <span style={{ fontWeight: 'bold', color: 'var(--text-primary)' }}>Order #{order.id.slice(0, 8)}</span>
+                  <span style={{ marginLeft: '1rem', color: 'var(--text-secondary)' }}>${order.total_amount?.toFixed(2)}</span>
                 </div>
                 <div>
                   <span style={{ 
-                    padding: '0.2rem 0.6rem', 
+                    padding: '0.3rem 0.8rem', 
                     borderRadius: '999px', 
                     fontSize: '0.8rem', 
                     fontWeight: 'bold',
